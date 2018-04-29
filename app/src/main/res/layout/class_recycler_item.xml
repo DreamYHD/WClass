@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    app:cardBackgroundColor="#ffff"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="5dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/class_image"
+            android:src="@drawable/ic_cloud_24dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="8dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+        <TextView
+            android:id="@+id/class_id_number"
+            android:textColor="#b231fc"
+            android:text="478214"
+            android:gravity="end"
+            android:layout_marginEnd="10dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/class_number"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp" />
+
+        <TextView
+            android:id="@+id/class_number"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_alignStart="@+id/class_name"
+            android:layout_alignTop="@+id/class_image"
+            android:gravity="center_vertical"
+            android:text="1507084225"
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/class_name"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_below="@+id/class_number"
+            android:gravity="center_vertical"
+            android:text="java"
+            android:textStyle="bold"
+            android:layout_toRightOf="@+id/class_image"
+            android:layout_marginStart="10dp"
+            android:textColor="#000000"
+             />
+        <TextView
+            android:id="@+id/class_user_name"
+            android:gravity="center_vertical"
+            android:text="开课教师：王倩"
+            android:layout_marginStart="10dp"
+            android:layout_below="@+id/class_name"
+            android:layout_toRightOf="@+id/class_image"
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+    </RelativeLayout>
+
+
+</android.support.v7.widget.CardView>
