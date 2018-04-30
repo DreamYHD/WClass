@@ -2,73 +2,74 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="82dp">
-
+    android:layout_height="62dp">
     <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
         android:layout_marginLeft="3dp"
         android:layout_marginRight="3dp"
         app:cardBackgroundColor="#ffff"
         app:cardCornerRadius="2dp"
-        app:cardElevation="2dp">
-
+        app:cardElevation="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        >
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <TextView
+                android:id="@+id/member_item_rank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/member_item_all_score"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="12dp"
+                android:text="1"
+                android:textColor="#b79999" />
             <ImageView
+                android:layout_centerVertical="true"
                 android:id="@+id/member_item_avator"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="10dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="25dp"
+
                 android:src="@mipmap/ic_launcher" />
 
             <TextView
+                android:textSize="12sp"
+                android:layout_marginTop="20dp"
                 android:id="@+id/member_item_all_score"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
+                android:textColor="#9f834c"
+                android:text="478经验值"
+                android:gravity="end|center_vertical"
+                android:layout_marginEnd="15dp"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="10dp"
-                android:layout_marginTop="10dp"
                 android:layout_toRightOf="@+id/member_item_name"
-                android:gravity="end"
-                android:text="478214"
-                android:textColor="#b231fc" />
+                android:layout_width="wrap_content"
+                android:layout_height="20dp" />
 
             <TextView
-
                 android:id="@+id/member_item_name"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:layout_alignStart="@+id/member_item_number"
                 android:layout_alignTop="@+id/member_item_avator"
                 android:gravity="center_vertical"
-                android:text="1507084225"
-                android:textColor="#000000" />
+                android:text="杨浩东"
+                android:textColor="#000000"
+                android:textStyle="bold|italic" />
 
             <TextView
                 android:id="@+id/member_item_number"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:layout_below="@+id/member_item_name"
-                android:layout_marginStart="15dp"
+                android:layout_marginStart="10dp"
                 android:layout_toRightOf="@+id/member_item_avator"
                 android:gravity="center_vertical"
-                android:text=" java程序设计"
-                android:textColor="#000000"
-                android:textStyle="bold" />
+                android:text="1507084225"
+                android:textStyle="italic" />
 
-            <TextView
-                android:id="@+id/class_user_name"
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:layout_below="@+id/member_item_number"
-                android:layout_marginStart="15dp"
-                android:layout_toRightOf="@+id/member_item_avator"
-                android:gravity="center_vertical"
-                android:text="开课教师：王倩" />
+
         </RelativeLayout>
 
 

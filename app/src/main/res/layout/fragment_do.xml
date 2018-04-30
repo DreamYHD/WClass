@@ -1,13 +1,69 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.administrator.wclass.classFuture.inner.DoFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    android:background="#f4f8fa"
+    tools:context="com.example.administrator.wclass.classFuture.inner.doSome.DoFragment">
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/do_appbar"
+        android:layout_width="match_parent"
+        android:layout_height="42dp">
+        <TextView
+            android:id="@+id/do_title_text"
+            android:gravity="center"
+            android:text="Android程序设计"
+            android:textStyle="bold"
+            android:textColor="#ffff"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </android.support.design.widget.AppBarLayout>
+    <android.support.design.widget.TabLayout
+        android:id="@+id/do_tab"
+        android:layout_below="@+id/do_appbar"
+        android:layout_width="match_parent"
+        android:layout_height="42dp">
+        <android.support.design.widget.TabItem
+            android:id="@+id/do_tab_ing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="进行中\n0" />
+        <android.support.design.widget.TabItem
+            android:id="@+id/do_tab_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="已结束\n0" />
+    </android.support.design.widget.TabLayout>
+    <android.support.v7.widget.RecyclerView
+        android:layout_below="@id/do_tab"
+        android:id="@+id/do_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+    <com.wangjie.rapidfloatingactionbutton.RapidFloatingActionLayout
+        xmlns:rfal="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/do_fbtn_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
-</FrameLayout>
+        rfal:rfal_frame_color="#ffffff"
+        rfal:rfal_frame_alpha="0.7"
+        >
+        <com.wangjie.rapidfloatingactionbutton.RapidFloatingActionButton
+            xmlns:rfab="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/do_fbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="10dp"
+            android:padding="8dp"
+            rfab:rfab_size="normal"
+            rfab:rfab_drawable="@drawable/rfab__drawable_rfab_default"
+            rfab:rfab_color_normal="#37474f"
+            rfab:rfab_color_pressed="#263238"
+            rfab:rfab_shadow_radius="7dp"
+            rfab:rfab_shadow_color="#999999"
+            rfab:rfab_shadow_dx="0dp"
+            rfab:rfab_shadow_dy="5dp"
+            />
+    </com.wangjie.rapidfloatingactionbutton.RapidFloatingActionLayout>
+</RelativeLayout>

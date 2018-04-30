@@ -1,27 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:fitsSystemWindows="true"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbar"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+    <FrameLayout
+        android:id="@+id/class_frame"
+        android:layout_marginBottom="51dp"
         android:layout_width="match_parent"
-        android:layout_height="42dp">
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"></android.support.v7.widget.Toolbar>
-    </android.support.design.widget.AppBarLayout>
+        android:layout_height="match_parent"></FrameLayout>
+    <TextView
+        android:layout_alignTop="@+id/class_bottom_menu"
+        android:background="#cccccc"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+
     <android.support.design.widget.BottomNavigationView
-        android:id="@+id/bottom_menu"
-        app:menu="@menu/bottom_menu"
-        app:itemTextColor="@color/seletor_bottom_navi"
-        app:itemIconTint="@color/seletor_bottom_navi"
+        android:id="@+id/class_bottom_menu"
+        android:layout_width="429dp"
+        android:layout_height="50dp"
         android:layout_gravity="bottom"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"/>
+        android:layout_alignParentBottom="true"
+        app:itemIconTint="@color/seletor_bottom_navi"
+        app:itemTextColor="@color/seletor_bottom_navi"
+        app:menu="@menu/class_bottom_menu" />
 
-</android.support.design.widget.CoordinatorLayout>
+
+
+</RelativeLayout>

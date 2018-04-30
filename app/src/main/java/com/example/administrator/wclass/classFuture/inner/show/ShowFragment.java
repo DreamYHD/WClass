@@ -1,4 +1,4 @@
-package com.example.administrator.wclass.classFuture.inner;
+package com.example.administrator.wclass.classFuture.inner.show;
 
 
 import android.os.Bundle;
@@ -15,7 +15,7 @@ import com.example.administrator.wclass.R;
 public class ShowFragment extends Fragment {
 
 
-    public static ShowFragment getShowFragment() {
+    public static ShowFragment getInstance() {
         // Required empty public constructor
         return new ShowFragment();
     }

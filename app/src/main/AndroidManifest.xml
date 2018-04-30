@@ -21,7 +21,9 @@
         <activity android:name=".adoutFuture.RegistActivity" />
         <activity android:name=".adoutFuture.LoginActivity" />
         <activity android:name=".classFuture.CreateClassActivity" />
-        <activity android:name=".classFuture.JoinClassActivity"></activity>
+        <activity android:name=".classFuture.JoinClassActivity" />
+        <activity android:name=".classFuture.inner.doSome.DoCreateQuestionActivity" />
+        <activity android:name=".classFuture.inner.doSome.DoShowQuestionActivity"></activity>
     </application>
 
 </manifest>

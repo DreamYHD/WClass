@@ -2,13 +2,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e8eff5"
+    android:background="#f4f7f9"
     android:orientation="vertical">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
+        <TextView
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="#ffff"
+            android:text="我的"
+            android:layout_width="match_parent"
+            android:layout_height="42dp" />
     </android.support.design.widget.AppBarLayout>
 
     <RelativeLayout

@@ -1,13 +1,125 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.administrator.wclass.classFuture.inner.ShowFragment">
+    android:orientation="vertical"
+    android:background="#f4f8fa"
+    tools:context="com.example.administrator.wclass.classFuture.inner.show.ShowFragment">
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/show_appbar"
+        android:layout_width="match_parent"
+        android:layout_height="42dp">
+        <TextView
+            android:id="@+id/show_title_text"
+            android:gravity="center"
+            android:text="Android程序设计"
+            android:textStyle="bold"
+            android:textColor="#ffff"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </android.support.design.widget.AppBarLayout>
+    <RelativeLayout
+        android:background="#ffff"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+        <ImageView
+            android:id="@+id/show_image"
+            android:src="@mipmap/ic_launcher"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp" />
+        <TextView
+            android:textSize="15sp"
+            android:textColor="#272727"
+            android:text="1507084225,1507084226"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_toRightOf="@id/show_image"
+            android:id="@+id/show_class_number_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textColor="#272727"
+            android:textSize="15sp"
+            android:layout_marginTop="5dp"
+            android:text="Android 程序设计"
+            android:layout_toRightOf="@+id/show_image"
+            android:layout_marginLeft="15dp"
+            android:layout_below="@+id/show_class_number_text"
+            android:id="@+id/show_name_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="王倩 中北大学 计算机与控制工程学院"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/show_image"
+            android:layout_below="@+id/show_name_text"
+            android:id="@+id/show_description_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-    <!-- TODO: Update blank fragment layout -->
+    </RelativeLayout>
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="50dp" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="#ffff"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+        <TextView
+            android:textSize="16sp"
+            android:textColor="#272727"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:text="班课号"
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+        <TextView
+            android:text="478214"
+            android:gravity="center_vertical"
+            android:textColor="#b95757"
+            android:id="@+id/show_bankehao_text"
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
 
-</FrameLayout>
+    </LinearLayout>
+    <TextView
+        android:background="#ababab"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <RelativeLayout
+        android:background="#ffff"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+        <TextView
+            android:textSize="16sp"
+            android:textColor="#272727"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:text="允许加入"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/textView2" />
+        <CheckBox
+            android:checked="true"
+            android:id="@+id/checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView2"
+            android:layout_alignBottom="@+id/textView2"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="12dp" />
+    </RelativeLayout>
+    <Button
+        android:textStyle="bold"
+        android:textColor="#ffff"
+        android:background="#dd5555"
+        android:text="结束班课"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+</LinearLayout>

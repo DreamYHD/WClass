@@ -25,7 +25,6 @@ public class CreateClassActivity extends BaseActivity {
 
     @Override
     protected void logicActivity(Bundle savedInstanceState) {
-
     }
     @Override
     protected int getLayoutView() {

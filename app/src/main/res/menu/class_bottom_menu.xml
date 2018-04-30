@@ -6,8 +6,8 @@
            android:icon="@drawable/ic_person_24dp"/>
     <item android:id="@+id/bottom_do"
         android:title="活动"
-        android:icon="@drawable/ic_person_24dp"/>
+        android:icon="@drawable/ic_colorize_black_24dp"/>
     <item android:id="@+id/bottom_show"
         android:title="详情"
-        android:icon="@drawable/ic_person_24dp"/>
+        android:icon="@drawable/ic_apps_black_24dp"/>
 </menu>
