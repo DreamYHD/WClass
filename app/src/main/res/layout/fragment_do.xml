@@ -8,14 +8,26 @@
         android:id="@+id/do_appbar"
         android:layout_width="match_parent"
         android:layout_height="42dp">
-        <TextView
-            android:id="@+id/do_title_text"
-            android:gravity="center"
-            android:text="Android程序设计"
-            android:textStyle="bold"
-            android:textColor="#ffff"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/bacn_from_do_image"
+                android:src="@drawable/ic_arrow_back_black_24dp"
+                android:layout_marginLeft="5dp"
+                android:layout_centerVertical="true"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+            <TextView
+                android:id="@+id/do_title_text"
+                android:gravity="center"
+                android:text="Android程序设计"
+                android:textStyle="bold"
+                android:textColor="#ffff"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </RelativeLayout>
+
     </android.support.design.widget.AppBarLayout>
     <android.support.design.widget.TabLayout
         android:id="@+id/do_tab"

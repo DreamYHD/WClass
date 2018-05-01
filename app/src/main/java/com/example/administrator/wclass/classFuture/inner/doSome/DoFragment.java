@@ -1,6 +1,7 @@
 package com.example.administrator.wclass.classFuture.inner.doSome;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabItem;
 import android.support.design.widget.TabLayout;
@@ -150,6 +151,10 @@ public class DoFragment extends BaseFragment implements RapidFloatingActionConte
     }
 
     private void startActivityByPosition(int position) {
+        if (position == 2){
+            Intent intent = new Intent(getContext(),SignedActivity.class);
+            startActivity(intent);
+        }
     }
 
     @Override

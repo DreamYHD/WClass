@@ -9,14 +9,26 @@
         android:id="@+id/show_appbar"
         android:layout_width="match_parent"
         android:layout_height="42dp">
-        <TextView
-            android:id="@+id/show_title_text"
-            android:gravity="center"
-            android:text="Android程序设计"
-            android:textStyle="bold"
-            android:textColor="#ffff"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/back_from_show_image"
+                android:src="@drawable/ic_arrow_back_black_24dp"
+                android:layout_marginLeft="5dp"
+                android:layout_centerVertical="true"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+            <TextView
+                android:id="@+id/show_title_text"
+                android:gravity="center"
+                android:text="Android程序设计"
+                android:textStyle="bold"
+                android:textColor="#ffff"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </RelativeLayout>
+
     </android.support.design.widget.AppBarLayout>
     <RelativeLayout
         android:background="#ffff"
@@ -87,6 +99,34 @@
             android:layout_height="30dp" />
 
     </LinearLayout>
+    <TextView
+        android:background="#ababab"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="#ffff"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+        <TextView
+            android:textSize="16sp"
+            android:textColor="#272727"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:text="课时"
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+        <TextView
+            android:text="12学时"
+            android:gravity="center_vertical"
+            android:textColor="#b95757"
+            android:id="@+id/show_longtime_text"
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+
+    </LinearLayout>
+
     <TextView
         android:background="#ababab"
         android:layout_width="match_parent"

@@ -36,9 +36,9 @@
     <Button
         android:textStyle="bold"
         android:textColor="#ffff"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorAccent"
         android:id="@+id/join_class"
-        android:layout_width="361dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"

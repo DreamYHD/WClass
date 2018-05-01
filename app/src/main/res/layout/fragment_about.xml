@@ -37,8 +37,8 @@
             android:id="@+id/me_name"
             android:layout_width="200dp"
             android:layout_height="30dp"
-            android:layout_marginStart="20dp"
-            android:layout_toEndOf="@+id/me_image_avatar"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
             android:gravity="center|left"
             android:maxLines="1"
             android:text="王倩"
@@ -56,25 +56,12 @@
             android:textSize="15sp" />
 
         <ImageView
-            android:id="@+id/me_more"
+            android:id="@+id/me_login"
             android:layout_width="30dp"
             android:layout_height="40dp"
             android:layout_alignParentEnd="true"
             android:layout_centerInParent="true"
             android:src="@drawable/me_right" />
-
-        <TextView
-            android:id="@+id/toolbar_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/me_more"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
-            android:singleLine="true"
-            android:text="我"
-            android:textColor="#FFFF"
-            android:textSize="20sp"
-            android:textStyle="bold" />
     </RelativeLayout>
 
     <LinearLayout
@@ -95,6 +82,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/me_score_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -106,7 +94,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="回答"
+                android:text="经验值"
                 android:textColor="#000000"
                 android:textSize="18sp" />
 
@@ -124,6 +112,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/me_joinnum_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -161,6 +150,7 @@
             android:background="#e4e3e3" />
 
         <RelativeLayout
+            android:id="@+id/about_btn"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
@@ -180,7 +170,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/my_image_back"
                 android:paddingLeft="18dp"
-                android:text="意见反馈"
+                android:text="个人信息"
                 android:textColor="#080808"
                 android:textSize="18sp" />
 
@@ -192,6 +182,7 @@
             android:background="#e4e3e3" />
 
         <RelativeLayout
+            android:id="@+id/setting_btn"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="#ffffff">
@@ -222,12 +213,13 @@
             android:background="#e4e3e3" />
 
         <RelativeLayout
-            android:id="@+id/rl_logout"
+            android:id="@+id/logout_btn"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="#ffff">
 
-            <TextView
+            <Button
+                android:background="@color/colorWhite"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"

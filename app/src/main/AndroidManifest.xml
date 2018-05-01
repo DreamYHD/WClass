@@ -5,7 +5,7 @@
     <application
         android:name=".MyApp"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/timg"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -23,7 +23,8 @@
         <activity android:name=".classFuture.CreateClassActivity" />
         <activity android:name=".classFuture.JoinClassActivity" />
         <activity android:name=".classFuture.inner.doSome.DoCreateQuestionActivity" />
-        <activity android:name=".classFuture.inner.doSome.DoShowQuestionActivity"></activity>
+        <activity android:name=".classFuture.inner.doSome.DoShowQuestionActivity" />
+        <activity android:name=".classFuture.inner.doSome.SignedActivity"></activity>
     </application>
 
 </manifest>
