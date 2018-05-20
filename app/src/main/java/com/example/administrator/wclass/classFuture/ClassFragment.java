@@ -10,10 +10,16 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.avos.avoscloud.AVException;
+import com.avos.avoscloud.AVObject;
+import com.avos.avoscloud.AVQuery;
+import com.avos.avoscloud.AVUser;
+import com.avos.avoscloud.GetCallback;
 import com.example.administrator.wclass.R;
 import com.example.administrator.wclass.base.BaseFragment;
 import com.example.administrator.wclass.base.OnClickerListener;
@@ -44,6 +50,10 @@ public class ClassFragment extends BaseFragment implements RapidFloatingActionCo
     @BindView(R.id.activity_main_rfal)
     RapidFloatingActionLayout activityMainRfal;
     private RapidFloatingActionHelper rfabHelper;
+    private List list_create = new ArrayList<>();
+    private List list_join = new ArrayList<>();
+    private List<String>list_all = new ArrayList<>();
+    private static final String TAG = "ClassFragment";
 
     public static ClassFragment getInstance() {
         // Required empty public constructor
@@ -81,26 +91,55 @@ public class ClassFragment extends BaseFragment implements RapidFloatingActionCo
                 rfaContent
         ).build();
         rfaContent.setOnRapidFloatingActionContentLabelListListener(this);
+    }
 
+    //从网络上获取数据更新数据
+    private void updateData() {
+        if (list_all.size()!= 0){
+            list_all.clear();
+        }
+        if (final_user != null){
+            AVQuery<AVUser>avUserAVQuery = new AVQuery<>("_User");
+            avUserAVQuery.getInBackground(final_user.getObjectId(), new GetCallback<AVUser>() {
+                @Override
+                public void done(AVUser avUser, AVException e) {
+                    if (e == null){
+                        Log.i(TAG, "done: "+avUser.getUsername()+avUser.get("create_wclass"));
+                        list_create = avUser.getList("create_wclass");
+                        list_join = avUser.getList("join_wclass");
+                        if (list_create != null){
+                            list_all.addAll(list_create);
+                            Log.i(TAG, "done: "+list_create.size());
+                        }
+                        if (list_join != null){
+                            list_all.addAll(list_join);
+                        }
+                        linearLayoutManager = new LinearLayoutManager(getActivity());
+                        classFragmentRecycler.setLayoutManager(linearLayoutManager);
+                        classFragmentAdapter = new ClassFragmentAdapter(getContext(),
+                                new OnClickerListener() {
+                                    @Override
+                                    public void click(int position, View view) {
+                                        Intent intent = new Intent(getContext(),ClassActivity.class);
+                                        Bundle bundle = new Bundle();
+                                        bundle.putString("class_random_number",list_all.get(position));
+                                        intent.putExtras(bundle);
+                                        startActivity(intent);
+                                    }
+                                },list_all);
+                        Log.i(TAG, "updateData: "+list_all.size());
+                        classFragmentRecycler.setAdapter(classFragmentAdapter);
+                        classFragmentAdapter.notifyDataSetChanged();
+                    }
+                }
+            });
 
+        }
     }
 
     @Override
     protected void init(View mView, Bundle mSavedInstanceState) {
-        linearLayoutManager = new LinearLayoutManager(getContext());
-        classFragmentRecycler.setLayoutManager(linearLayoutManager);
-        classFragmentAdapter = new ClassFragmentAdapter(getContext(),
-                new OnClickerListener() {
-                    @Override
-                    public void click(int position, View view) {
-
-                        Intent intent = new Intent(getContext(),ClassActivity.class);
-                        startActivity(intent);
-                    }
-                });
-        classFragmentRecycler.setAdapter(classFragmentAdapter);
     }
-
     @Override
     protected int getResourcesLayout() {
         return R.layout.fragment_class;
@@ -110,7 +149,6 @@ public class ClassFragment extends BaseFragment implements RapidFloatingActionCo
     public void onRFACItemLabelClick(int position, RFACLabelItem item) {
         startActivityByPosition(position);
     }
-
     private void startActivityByPosition(int position) {
         if (position == 0){
             Intent intent = new Intent(getContext(), CreateClassActivity.class);
@@ -120,9 +158,14 @@ public class ClassFragment extends BaseFragment implements RapidFloatingActionCo
             startActivity(intent);
         }
     }
-
     @Override
     public void onRFACItemIconClick(int position, RFACLabelItem item) {
         startActivityByPosition(position);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateData();
     }
 }

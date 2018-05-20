@@ -31,7 +31,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        app:srcCompat="@mipmap/ic_launcher" />
+        app:srcCompat="@drawable/classroom_base" />
 
     <LinearLayout
         android:id="@+id/linearLayout"

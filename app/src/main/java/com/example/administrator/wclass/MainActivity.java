@@ -7,6 +7,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.avos.avoscloud.AVException;
+import com.avos.avoscloud.AVObject;
+import com.avos.avoscloud.SaveCallback;
 import com.example.administrator.wclass.adoutFuture.AboutFragment;
 import com.example.administrator.wclass.base.BaseActivity;
 import com.example.administrator.wclass.classFuture.ClassFragment;
@@ -24,6 +27,19 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void logicActivity(Bundle savedInstanceState) {
+        // 测试 SDK 是否正常工作的代码
+        AVObject testObject = new AVObject("TestObject");
+        testObject.put("words","Hello World!");
+        testObject.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(AVException e) {
+                if(e == null){
+                    Log.d("saved","success!");
+                }else {
+                    Log.e(TAG, "done: "+e.getMessage() );
+                }
+            }
+        });
         if (savedInstanceState != null){
             Log.i(TAG, "logicActivity: "+savedInstanceState.getInt("bottom_id"));
             showFragment(savedInstanceState.getInt("bottom_id"));

@@ -23,7 +23,7 @@
     <EditText
         android:paddingRight="15dp"
         android:paddingLeft="15dp"
-        android:hint="用户名"
+        android:hint="手机号"
         android:background="#FFFF"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
@@ -71,7 +71,7 @@
         android:layout_marginTop="13dp"/>
 
     <TextView
-        android:id="@+id/forget_login"
+        android:id="@+id/forget_login_text"
         android:textColor="#ffff"
         android:text="忘记密码？"
         android:layout_width="wrap_content"
@@ -85,7 +85,7 @@
         android:text="注册账号"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/register_btn"
+        android:id="@+id/register_btn_text"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/login"
         android:layout_centerVertical="true"

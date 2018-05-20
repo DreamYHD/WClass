@@ -1,5 +1,6 @@
 package com.example.administrator.wclass.classFuture.inner;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -24,15 +25,19 @@ public class ClassActivity extends BaseActivity {
     FrameLayout classFrame;
     @BindView(R.id.class_bottom_menu)
     BottomNavigationView classBottomMenu;
+    private String class_random_number;
 
 
     @Override
     protected void logicActivity(Bundle savedInstanceState) {
+        Intent intent =getIntent();
+        class_random_number = intent.getExtras().getString("class_random_number");
+
         if (savedInstanceState != null){
             Log.i(TAG, "ClassActivity: "+savedInstanceState.getInt("bottom_id_class"));
             showFragment(savedInstanceState.getInt("bottom_id_class"));
         }else {
-            ActivityUtils.replaceFragmentToActivity(fragmentManager, MemberFragment.getInstance(),R.id.class_frame);
+            ActivityUtils.replaceFragmentToActivity(fragmentManager, MemberFragment.getInstance(class_random_number),R.id.class_frame);
         }
         BottomNavigationViewHelper.disableShiftMode(classBottomMenu);
         classBottomMenu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -51,13 +56,13 @@ public class ClassActivity extends BaseActivity {
     private void showFragment(int menu_id) {
         switch (menu_id){
             case R.id.bottom_person:
-                ActivityUtils.replaceFragmentToActivity(fragmentManager,MemberFragment.getInstance(),R.id.class_frame);
+                ActivityUtils.replaceFragmentToActivity(fragmentManager,MemberFragment.getInstance(class_random_number),R.id.class_frame);
                 break;
             case R.id.bottom_do:
-                ActivityUtils.replaceFragmentToActivity(fragmentManager, DoFragment.getInstance(),R.id.class_frame);
+                ActivityUtils.replaceFragmentToActivity(fragmentManager, DoFragment.getInstance(class_random_number),R.id.class_frame);
                 break;
             case R.id.bottom_show:
-                ActivityUtils.replaceFragmentToActivity(fragmentManager, ShowFragment.getInstance(),R.id.class_frame);
+                ActivityUtils.replaceFragmentToActivity(fragmentManager, ShowFragment.getInstance(class_random_number),R.id.class_frame);
                 break;
         }
     }

@@ -1,17 +1,13 @@
 package com.example.administrator.wclass.classFuture.inner.doSome;
 
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TabItem;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.administrator.wclass.R;
@@ -28,8 +24,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
@@ -51,7 +45,7 @@ public class DoFragment extends BaseFragment implements RapidFloatingActionConte
     private RapidFloatingActionHelper rfabHelper;
     private DoAdapter adapter;
 
-    public static DoFragment getInstance() {
+    public static DoFragment getInstance(String class_random_number) {
         return new DoFragment();
     }
 
@@ -133,7 +127,7 @@ public class DoFragment extends BaseFragment implements RapidFloatingActionConte
         adapter = new DoAdapter(getContext(), new OnClickerListener() {
             @Override
             public void click(int position, View view) {
-
+                startActivityTo(GetDiscussActivity.class);
             }
         });
         doRecyclerView.setAdapter(adapter);
@@ -152,15 +146,17 @@ public class DoFragment extends BaseFragment implements RapidFloatingActionConte
 
     private void startActivityByPosition(int position) {
         if (position == 2){
-            Intent intent = new Intent(getContext(),SignedActivity.class);
-            startActivity(intent);
+           startActivityTo(SignedActivity.class);
+        }
+        if (position == 1){
+            startActivityTo(SendDiscussActivity.class);
+        }
+        if (position == 0){
         }
     }
 
     @Override
     public void onRFACItemIconClick(int position, RFACLabelItem item) {
         startActivityByPosition(position);
-
-
     }
 }

@@ -2,6 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.administrator.wclass">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- 基础模块（必须加入以下声明）START -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <!-- 基础模块 END -->
     <application
         android:name=".MyApp"
         android:allowBackup="true"
@@ -24,7 +34,11 @@
         <activity android:name=".classFuture.JoinClassActivity" />
         <activity android:name=".classFuture.inner.doSome.DoCreateQuestionActivity" />
         <activity android:name=".classFuture.inner.doSome.DoShowQuestionActivity" />
-        <activity android:name=".classFuture.inner.doSome.SignedActivity"></activity>
+        <activity android:name=".classFuture.inner.doSome.SignedActivity" />
+        <activity android:name=".classFuture.inner.doSome.SendDiscussActivity" />
+        <activity android:name=".classFuture.inner.doSome.GetDiscussActivity" />
+        <activity android:name=".findFuture.WebActivity" />
+        <activity android:name=".classFuture.inner.member.MemberActivity"></activity>
     </application>
 
 </manifest>

@@ -6,7 +6,7 @@ import android.os.Bundle;
 import com.example.administrator.wclass.R;
 import com.example.administrator.wclass.base.BaseActivity;
 
-public class DiscussActivity extends BaseActivity {
+public class SendDiscussActivity extends BaseActivity {
 
     @Override
     protected void logicActivity(Bundle savedInstanceState) {

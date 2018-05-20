@@ -31,7 +31,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginStart="15dp"
-            android:src="@drawable/ic_cloud_24dp" />
+            android:src="@drawable/ava_base" />
 
         <TextView
             android:id="@+id/me_name"
@@ -213,12 +213,13 @@
             android:background="#e4e3e3" />
 
         <RelativeLayout
-            android:id="@+id/logout_btn"
+
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="#ffff">
 
             <Button
+                android:id="@+id/logout_btn"
                 android:background="@color/colorWhite"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

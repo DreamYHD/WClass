@@ -18,57 +18,57 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/member_item_avator"
+                android:id="@+id/class_avator_item"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="10dp"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@drawable/classroom_base" />
 
             <TextView
-                android:id="@+id/member_item_all_score"
+                android:id="@+id/class_random_number_item"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_toRightOf="@+id/member_item_name"
+                android:layout_toRightOf="@+id/class_class_item"
                 android:gravity="end"
-                android:text="478214"
+                android:text=""
                 android:textColor="#b231fc" />
 
             <TextView
 
-                android:id="@+id/member_item_name"
+                android:id="@+id/class_class_item"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
-                android:layout_alignStart="@+id/member_item_number"
-                android:layout_alignTop="@+id/member_item_avator"
+                android:layout_alignStart="@+id/class_name_item"
+                android:layout_alignTop="@+id/class_avator_item"
                 android:gravity="center_vertical"
-                android:text="1507084225"
+                android:text=""
                 android:textColor="#000000" />
 
             <TextView
-                android:id="@+id/member_item_number"
+                android:id="@+id/class_name_item"
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
-                android:layout_below="@+id/member_item_name"
+                android:layout_below="@+id/class_class_item"
                 android:layout_marginStart="15dp"
-                android:layout_toRightOf="@+id/member_item_avator"
+                android:layout_toRightOf="@+id/class_avator_item"
                 android:gravity="center_vertical"
-                android:text=" java程序设计"
+                android:text="加载中......"
                 android:textColor="#000000"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/class_user_name"
+                android:id="@+id/class_owner_name"
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
-                android:layout_below="@+id/member_item_number"
+                android:layout_below="@+id/class_name_item"
                 android:layout_marginStart="15dp"
-                android:layout_toRightOf="@+id/member_item_avator"
+                android:layout_toRightOf="@+id/class_avator_item"
                 android:gravity="center_vertical"
-                android:text="开课教师：王倩" />
+                android:text="" />
         </RelativeLayout>
 
 

@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="56dp"
+    android:orientation="vertical">
+    <TextView
+        android:padding="8dp"
+        android:textSize="16sp"
+        android:id="@+id/find_item_text"
+        android:layout_width="match_parent"
+        android:layout_height="54dp" />
+    <TextView
+        android:background="#d8d8d8"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

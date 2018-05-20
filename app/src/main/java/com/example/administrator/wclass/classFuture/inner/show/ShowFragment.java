@@ -15,7 +15,7 @@ import com.example.administrator.wclass.R;
 public class ShowFragment extends Fragment {
 
 
-    public static ShowFragment getInstance() {
+    public static ShowFragment getInstance(String class_random_number) {
         // Required empty public constructor
         return new ShowFragment();
     }

@@ -1,53 +1,26 @@
 package com.example.administrator.wclass.data.bean;
 
+import com.avos.avoscloud.AVClassName;
+import com.avos.avoscloud.AVObject;
+import com.avos.avoscloud.AVUser;
+
+import java.util.List;
+import java.util.Map;
+
 /**
  * Created by Administrator on 2018/4/29.
  */
+public class ClassBean{
+    private String class_image_url;//头像
+    private String class_name;//课程
+    private String class_class;//上课班级
+    private String class_duration;//课时
+    private String class_random_number;//随机一个班级号
+    private AVUser class_owner_user;//课堂管理者
+    private List<AVUser>user_list;//所有的成员名单
+    //签到相关
+    private String class_signin_number;//签到码，每次都会重置
+    private List<AVUser>user_sigin_list;//本次签到成功，每次都会重置
+    private Map<AVUser,Integer> class_user_rank;//每个学生对应的经验值
 
-public class ClassBean {
-    private String class_image_url;
-    private String class_number;
-    private String class_name;
-    private String class_id_number;
-    private User user;
-
-    public String getClass_image_url() {
-        return class_image_url;
-    }
-
-    public void setClass_image_url(String class_image_url) {
-        this.class_image_url = class_image_url;
-    }
-
-    public String getClass_number() {
-        return class_number;
-    }
-
-    public void setClass_number(String class_number) {
-        this.class_number = class_number;
-    }
-
-    public String getClass_name() {
-        return class_name;
-    }
-
-    public void setClass_name(String class_name) {
-        this.class_name = class_name;
-    }
-
-    public String getClass_id_number() {
-        return class_id_number;
-    }
-
-    public void setClass_id_number(String class_id_number) {
-        this.class_id_number = class_id_number;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 }

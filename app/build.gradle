@@ -49,4 +49,7 @@ dependencies {
 
     // 推送与实时聊天需要的包
     compile('cn.leancloud.android:avoscloud-push:v4.6.4@aar') { transitive = true }
+
+    compile 'org.jsoup:jsoup:1.11.3'
+
 }

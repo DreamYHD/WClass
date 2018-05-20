@@ -20,53 +20,53 @@
                 android:id="@+id/member_item_rank"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/member_item_all_score"
+                android:layout_alignBottom="@+id/class_random_number_item"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="12dp"
                 android:text="1"
                 android:textColor="#b79999" />
             <ImageView
                 android:layout_centerVertical="true"
-                android:id="@+id/member_item_avator"
+                android:id="@+id/class_avator_item"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="25dp"
 
-                android:src="@mipmap/ic_launcher" />
+                android:src="@drawable/ava_base" />
 
             <TextView
                 android:textSize="12sp"
                 android:layout_marginTop="20dp"
-                android:id="@+id/member_item_all_score"
+                android:id="@+id/class_random_number_item"
                 android:textColor="#9f834c"
-                android:text="478经验值"
+                android:text=""
                 android:gravity="end|center_vertical"
                 android:layout_marginEnd="15dp"
                 android:layout_alignParentEnd="true"
-                android:layout_toRightOf="@+id/member_item_name"
+                android:layout_toRightOf="@+id/class_class_item"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp" />
 
             <TextView
-                android:id="@+id/member_item_name"
+                android:id="@+id/class_class_item"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
-                android:layout_alignStart="@+id/member_item_number"
-                android:layout_alignTop="@+id/member_item_avator"
+                android:layout_alignStart="@+id/class_name_item"
+                android:layout_alignTop="@+id/class_avator_item"
                 android:gravity="center_vertical"
-                android:text="杨浩东"
+                android:text="加载中......"
                 android:textColor="#000000"
                 android:textStyle="bold|italic" />
 
             <TextView
-                android:id="@+id/member_item_number"
+                android:id="@+id/class_name_item"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
-                android:layout_below="@+id/member_item_name"
+                android:layout_below="@+id/class_class_item"
                 android:layout_marginStart="10dp"
-                android:layout_toRightOf="@+id/member_item_avator"
+                android:layout_toRightOf="@+id/class_avator_item"
                 android:gravity="center_vertical"
-                android:text="1507084225"
+                android:text=""
                 android:textStyle="italic" />
 
 

@@ -36,7 +36,7 @@
         android:layout_height="100dp">
         <ImageView
             android:id="@+id/show_image"
-            android:src="@mipmap/ic_launcher"
+            android:src="@drawable/classroom_base"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="15dp"
             android:layout_width="70dp"
@@ -44,7 +44,7 @@
         <TextView
             android:textSize="15sp"
             android:textColor="#272727"
-            android:text="1507084225,1507084226"
+            android:text="14070941,14070942"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="15dp"
             android:layout_toRightOf="@id/show_image"

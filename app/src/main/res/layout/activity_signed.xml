@@ -93,7 +93,7 @@
         android:layout_height="wrap_content" />
     <TextView
         android:textSize="15sp"
-        android:text="14707094204    王倩            \t14707094204    王倩\n14707094204    王倩            \t14707094204    王倩\n14707094204    王倩            \t14707094204    王倩\n14707094204    王倩            \t14707094204    王倩\n"
+        android:text="14707094107    王倩            \t14707094204    王倩\n14707094204    王倩            \t14707094204    王倩\n14707094204    王倩            \t14707094204    王倩\n14707094204    王倩            \t14707094204    王倩\n"
         android:layout_marginRight="8dp"
         android:layout_marginLeft="8dp"
         android:layout_below="@+id/text_signed"

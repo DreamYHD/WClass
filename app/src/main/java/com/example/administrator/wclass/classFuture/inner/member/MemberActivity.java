@@ -1,4 +1,4 @@
-package com.example.administrator.wclass.classFuture.inner.doSome;
+package com.example.administrator.wclass.classFuture.inner.member;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -6,7 +6,8 @@ import android.os.Bundle;
 import com.example.administrator.wclass.R;
 import com.example.administrator.wclass.base.BaseActivity;
 
-public class GetDiscussActivity extends BaseActivity {
+public class MemberActivity extends BaseActivity {
+
 
     @Override
     protected void logicActivity(Bundle savedInstanceState) {
@@ -15,6 +16,6 @@ public class GetDiscussActivity extends BaseActivity {
 
     @Override
     protected int getLayoutView() {
-        return R.layout.activity_gwt_discuss;
+        return R.layout.activity_member;
     }
 }
