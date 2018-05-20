@@ -89,7 +89,26 @@ public class MemberFragment extends BaseFragment {
 
     @OnClick(R.id.qiandao_btn)
     public void onViewClicked() {
-        startActivityTo(MemberActivity.class);
+        AVQuery<AVObject> query = new AVQuery<>("ClassBean");
+        query.whereEqualTo("class_random_number", random_number);
+        query.getFirstInBackground(new GetCallback<AVObject>() {
+            @Override
+            public void done(final AVObject avObject, AVException e) {
+                if (e == null) {
+                    Log.i(TAG, "done: 签到已经开始");
+                    if (avObject != null) {
+                        String key = avObject.get("class_signin_number").toString();
+                        if (key != null && !key.equals("") ){
+                            startActivityTo(MemberActivity.class,random_number);
+                        }else {
+
+                            Toast.makeText(getActivity(), "签到未开始", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                    }
+                }
+            }
+        });
     }
 
     @Override
@@ -140,7 +159,6 @@ public class MemberFragment extends BaseFragment {
                         //绘制界面
                         appbarTitleText.setText(avObject.getString("class_name"));
                         if (avObject.getList("user_list") != null){
-
                             sumMemberText.setText(avObject.getList("user_list").size()+" 人");
                         }else {
                             sumMemberText.setText("0 人");

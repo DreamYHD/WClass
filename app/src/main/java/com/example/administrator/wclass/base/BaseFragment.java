@@ -33,7 +33,7 @@ public abstract class BaseFragment extends Fragment {
         View view =  inflater.inflate(getResourcesLayout(), container, false);
         unbinder=ButterKnife.bind(this,view);
         final_user = AVUser.getCurrentUser();
-        Log.i(TAG, "onCreateView: "+final_user.getUsername());
+        //Log.i(TAG, "onCreateView: "+final_user.getUsername());
         init(view,savedInstanceState);
         logic();
         return view;
@@ -57,6 +57,13 @@ public abstract class BaseFragment extends Fragment {
     }
     protected void startActivityTo(Class  activityClass){
         Intent intent = new Intent(getContext(),activityClass);
+        startActivity(intent);
+    }
+    protected void startActivityTo(Class  activityClass,String s){
+        Intent intent = new Intent(getContext(),activityClass);
+        Bundle bundle = new Bundle();
+        bundle.putString("random_number",s);
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 

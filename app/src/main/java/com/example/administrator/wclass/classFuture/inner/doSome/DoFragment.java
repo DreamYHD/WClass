@@ -9,7 +9,13 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.avos.avoscloud.AVException;
+import com.avos.avoscloud.AVObject;
+import com.avos.avoscloud.AVQuery;
+import com.avos.avoscloud.AVUser;
+import com.avos.avoscloud.GetCallback;
 import com.example.administrator.wclass.R;
 import com.example.administrator.wclass.base.BaseFragment;
 import com.example.administrator.wclass.base.OnClickerListener;
@@ -44,8 +50,11 @@ public class DoFragment extends BaseFragment implements RapidFloatingActionConte
     Unbinder unbinder;
     private RapidFloatingActionHelper rfabHelper;
     private DoAdapter adapter;
+    private static String random_number;
 
     public static DoFragment getInstance(String class_random_number) {
+
+        random_number = class_random_number;
         return new DoFragment();
     }
 
@@ -123,11 +132,40 @@ public class DoFragment extends BaseFragment implements RapidFloatingActionConte
 
     @Override
     protected void init(View mView, Bundle mSavedInstanceState) {
+        AVQuery<AVObject> query = new AVQuery<>("ClassBean");
+        query.whereEqualTo("class_random_number", random_number);
+        query.getFirstInBackground(new GetCallback<AVObject>() {
+            @Override
+            public void done(final AVObject avObject, AVException e) {
+                if (e == null) {
+                    Log.i(TAG, "done: 获取房间信息成功");
+                    if (avObject != null) {
+                        //获取课堂的管理者
+                        final AVQuery<AVUser> avQuery = new AVQuery<>("_User");
+                        avQuery.getInBackground(avObject.getString("class_owner_user"), new GetCallback<AVUser>() {
+                            @Override
+                            public void done(AVUser avUser, AVException e) {
+                                //判断管理者和当前用户是否为同一人
+                                if (avUser.getUsername().equals(AVUser.getCurrentUser().getUsername())) {
+                                    doFbtn.setVisibility(View.VISIBLE);
+                                } else {
+                                    doFbtn.setVisibility(View.GONE);
+
+                                }
+                            }
+                        });
+
+                    } else {
+                        Toast.makeText(getContext(), "房间不存在", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
         doRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new DoAdapter(getContext(), new OnClickerListener() {
             @Override
             public void click(int position, View view) {
-                startActivityTo(GetDiscussActivity.class);
+                startActivityTo(GetDiscussActivity.class,random_number);
             }
         });
         doRecyclerView.setAdapter(adapter);
@@ -146,14 +184,15 @@ public class DoFragment extends BaseFragment implements RapidFloatingActionConte
 
     private void startActivityByPosition(int position) {
         if (position == 2){
-           startActivityTo(SignedActivity.class);
+           startActivityTo(SignedActivity.class,random_number );
         }
         if (position == 1){
-            startActivityTo(SendDiscussActivity.class);
+            startActivityTo(SendDiscussActivity.class,random_number);
         }
         if (position == 0){
         }
     }
+
 
     @Override
     public void onRFACItemIconClick(int position, RFACLabelItem item) {
