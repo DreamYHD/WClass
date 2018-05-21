@@ -46,6 +46,13 @@
     </android.support.design.widget.AppBarLayout>
 
     <EditText
+        android:paddingLeft="10dp"
+        android:hint="请输入标题"
+        android:id="@+id/discuss_title"
+        android:layout_margin="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <EditText
 
         android:padding="10dp"
         android:paddingTop="4dp"
@@ -82,6 +89,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"/>
     <Button
+        android:id="@+id/discuss_send_btn"
         android:textSize="16sp"
         android:textColor="@color/colorWhite"
         android:text="发布"

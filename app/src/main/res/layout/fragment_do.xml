@@ -29,27 +29,12 @@
         </RelativeLayout>
 
     </android.support.design.widget.AppBarLayout>
-    <android.support.design.widget.TabLayout
-        android:id="@+id/do_tab"
-        android:layout_below="@+id/do_appbar"
-        android:layout_width="match_parent"
-        android:layout_height="42dp">
-        <android.support.design.widget.TabItem
-            android:id="@+id/do_tab_ing"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="进行中\n0" />
-        <android.support.design.widget.TabItem
-            android:id="@+id/do_tab_end"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="已结束\n0" />
-    </android.support.design.widget.TabLayout>
+
     <android.support.v7.widget.RecyclerView
-        android:layout_below="@id/do_tab"
+        android:layout_below="@id/do_appbar"
         android:id="@+id/do_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+        android:layout_height="wrap_content"/>
     <com.wangjie.rapidfloatingactionbutton.RapidFloatingActionLayout
         xmlns:rfal="http://schemas.android.com/apk/res-auto"
         android:id="@+id/do_fbtn_layout"

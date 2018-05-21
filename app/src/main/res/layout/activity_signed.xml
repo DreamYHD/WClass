@@ -45,7 +45,7 @@
         tools:layout_editor_absoluteY="81dp" />
     <LinearLayout
         android:id="@+id/layout_se"
-        android:weightSum="3"
+        android:weightSum="2"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="20dp"
@@ -84,7 +84,7 @@
         android:layout_height="wrap_content" />
     <TextView
         android:textSize="15sp"
-        android:text="14707094107    王倩            \t14707094204    王倩\n14707094204    王倩            \t14707094204    王倩\n14707094204    王倩            \t14707094204    王倩\n14707094204    王倩            \t14707094204    王倩\n"
+        android:text=""
         android:layout_marginRight="8dp"
         android:layout_marginLeft="8dp"
         android:layout_below="@+id/text_signed"

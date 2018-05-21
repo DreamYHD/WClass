@@ -39,21 +39,18 @@ public class DoFragment extends BaseFragment implements RapidFloatingActionConte
     private static final String TAG = "DoFragment";
     @BindView(R.id.do_title_text)
     TextView doTitleText;
-    @BindView(R.id.do_tab)
-    TabLayout doTab;
     @BindView(R.id.do_recycler_view)
     RecyclerView doRecyclerView;
     @BindView(R.id.do_fbtn)
     RapidFloatingActionButton doFbtn;
     @BindView(R.id.do_fbtn_layout)
     RapidFloatingActionLayout doFbtnLayout;
-    Unbinder unbinder;
     private RapidFloatingActionHelper rfabHelper;
     private DoAdapter adapter;
     private static String random_number;
+    private List<String>list =
 
     public static DoFragment getInstance(String class_random_number) {
-
         random_number = class_random_number;
         return new DoFragment();
     }
@@ -95,81 +92,12 @@ public class DoFragment extends BaseFragment implements RapidFloatingActionConte
                 doFbtn,
                 rfaContent
         ).build();
-        rfaContent.setOnRapidFloatingActionContentLabelListListener(this);
-        for (int i = 0; i < doTab.getTabCount(); i++) {
-            TabLayout.Tab tab = doTab.getTabAt(i);
-            if (tab == null) return;
-            //这里使用到反射，拿到Tab对象后获取Class
-            Class c = tab.getClass();
-            try {
-                //Filed “字段、属性”的意思,c.getDeclaredField 获取私有属性。
-                //"mView"是Tab的私有属性名称(可查看TabLayout源码),类型是 TabView,TabLayout私有内部类。
-                Field field = c.getDeclaredField("mView");
-                //值为 true 则指示反射的对象在使用时应该取消 Java 语言访问检查。值为 false 则指示反射的对象应该实施 Java 语言访问检查。
-                //如果不这样会报如下错误
-                // java.lang.IllegalAccessException:
-                //Class com.test.accessible.Main
-                //can not access
-                //a member of class com.test.accessible.AccessibleTest
-                //with modifiers "private"
-                field.setAccessible(true);
-                final View view = (View) field.get(tab);
-                if (view == null) return;
-                view.setTag(i);
-                view.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        int position = (int) view.getTag();
-                        Log.i(TAG, "onClick: "+position);
-                    }
-                });
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+
 
     }
 
     @Override
     protected void init(View mView, Bundle mSavedInstanceState) {
-        AVQuery<AVObject> query = new AVQuery<>("ClassBean");
-        query.whereEqualTo("class_random_number", random_number);
-        query.getFirstInBackground(new GetCallback<AVObject>() {
-            @Override
-            public void done(final AVObject avObject, AVException e) {
-                if (e == null) {
-                    Log.i(TAG, "done: 获取房间信息成功");
-                    if (avObject != null) {
-                        //获取课堂的管理者
-                        final AVQuery<AVUser> avQuery = new AVQuery<>("_User");
-                        avQuery.getInBackground(avObject.getString("class_owner_user"), new GetCallback<AVUser>() {
-                            @Override
-                            public void done(AVUser avUser, AVException e) {
-                                //判断管理者和当前用户是否为同一人
-                                if (avUser.getUsername().equals(AVUser.getCurrentUser().getUsername())) {
-                                    doFbtn.setVisibility(View.VISIBLE);
-                                } else {
-                                    doFbtn.setVisibility(View.GONE);
-
-                                }
-                            }
-                        });
-
-                    } else {
-                        Toast.makeText(getContext(), "房间不存在", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-        });
-        doRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new DoAdapter(getContext(), new OnClickerListener() {
-            @Override
-            public void click(int position, View view) {
-                startActivityTo(GetDiscussActivity.class,random_number);
-            }
-        });
-        doRecyclerView.setAdapter(adapter);
-
     }
 
     @Override
@@ -197,5 +125,47 @@ public class DoFragment extends BaseFragment implements RapidFloatingActionConte
     @Override
     public void onRFACItemIconClick(int position, RFACLabelItem item) {
         startActivityByPosition(position);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        AVQuery<AVObject> query = new AVQuery<>("ClassBean");
+        query.whereEqualTo("class_random_number", random_number);
+        query.getFirstInBackground(new GetCallback<AVObject>() {
+            @Override
+            public void done(final AVObject avObject, AVException e) {
+                if (e == null) {
+                    Log.i(TAG, "done: 获取房间信息成功");
+                    if (avObject != null) {
+                        //获取课堂的管理者
+                        final AVQuery<AVUser> avQuery = new AVQuery<>("_User");
+                        avQuery.getInBackground(avObject.getString("class_owner_user"), new GetCallback<AVUser>() {
+                            @Override
+                            public void done(AVUser avUser, AVException e) {
+                                //判断管理者和当前用户是否为同一人
+                                if (avUser.getUsername().equals(AVUser.getCurrentUser().getUsername())) {
+                                    doFbtn.setVisibility(View.VISIBLE);
+                                } else {
+                                    doFbtn.setVisibility(View.GONE);
+                                }
+                            }
+                        });
+
+                    } else {
+                        Toast.makeText(getContext(), "房间不存在", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
+        doRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter = new DoAdapter(getContext(), new OnClickerListener() {
+            @Override
+            public void click(int position, View view) {
+                startActivityTo(GetDiscussActivity.class,random_number);
+            }
+        });
+        doRecyclerView.setAdapter(adapter);
+
     }
 }

@@ -23,6 +23,7 @@ import com.example.administrator.wclass.classFuture.inner.member.MemberAdapter;
 import com.example.administrator.wclass.utils.MapSortUtils;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -104,7 +105,36 @@ public class SignedActivity extends BaseActivity {
                                 if (e == null){
                                     Toast.makeText(SignedActivity.this, "签到成功关闭", Toast.LENGTH_SHORT).show();
 
-                                    // TODO: 2018/5/20 展示没有签到的，把列表更新为null 
+                                    List<String>user_list = avObject.getList("user_list");//所有用户列表
+                                    if (user_list != null) {
+                                        List<String> user_sigin = avObject.getList("user_sigin");
+                                        if (user_sigin != null) {
+                                            final List<String> temp = user_list;
+                                            if (user_sigin != null) {
+                                                for (int i = 0; i < user_sigin.size(); i++) {
+                                                    if (temp.contains(user_sigin.get(i))) {
+                                                        temp.remove(user_sigin.get(i));
+                                                    }
+                                                }
+                                            }
+                                            final String[] s = {""};
+                                            for (int i = 0; i < temp.size(); i++) {
+                                                final AVQuery<AVUser> avQuery = new AVQuery<>("_User");
+                                                avQuery.getInBackground(temp.get(i), new GetCallback<AVUser>() {
+                                                    @Override
+                                                    public void done(AVUser avUser, AVException e) {
+                                                        s[0] += avUser.getUsername() + " "+avUser.get("st_number")+"   ";
+                                                    }
+                                                });
+                                                if ((i + 1) % 2 == 0) {
+                                                    s[0]+=" \n ";
+                                                }
+                                            }
+                                            signedNoText.setText(s[0]);
+                                        }
+
+                                    }
+
                                 }
                             }
                         });
