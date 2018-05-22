@@ -1,5 +1,6 @@
 package com.example.administrator.wclass.classFuture;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
@@ -18,6 +19,7 @@ import com.avos.avoscloud.GetCallback;
 import com.avos.avoscloud.SaveCallback;
 import com.example.administrator.wclass.R;
 import com.example.administrator.wclass.base.BaseActivity;
+import com.example.administrator.wclass.classFuture.inner.ClassActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,6 +79,11 @@ public class CreateClassActivity extends BaseActivity {
                                 .setAction("进入课堂", new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
+                                        Intent intent = new Intent(activity, ClassActivity.class);
+                                        Bundle bundle = new Bundle();
+                                        bundle.putString("class_random_number",class_number);
+                                        intent.putExtras(bundle);
+                                        startActivity(intent);
 
                                     }
                                 }).show();

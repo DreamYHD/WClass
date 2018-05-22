@@ -145,6 +145,7 @@
             android:layout_height="match_parent"
             android:id="@+id/textView2" />
         <CheckBox
+            android:visibility="gone"
             android:checked="true"
             android:id="@+id/checkbox"
             android:layout_width="wrap_content"
@@ -155,6 +156,7 @@
             android:layout_marginEnd="12dp" />
     </RelativeLayout>
     <Button
+        android:id="@+id/end_class_btn"
         android:textStyle="bold"
         android:textColor="#ffff"
         android:background="#dd5555"

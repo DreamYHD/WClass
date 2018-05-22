@@ -66,7 +66,7 @@ public class ClassFragmentAdapter extends RecyclerView.Adapter<ClassFragmentAdap
                         });
 
                     }else {
-                        Toast.makeText(context, "房间不存在", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "房间不存在或者已经被删除", Toast.LENGTH_SHORT).show();
                     }
                 }
             }

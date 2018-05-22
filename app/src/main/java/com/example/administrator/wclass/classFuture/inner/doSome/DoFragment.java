@@ -48,7 +48,8 @@ public class DoFragment extends BaseFragment implements RapidFloatingActionConte
     private RapidFloatingActionHelper rfabHelper;
     private DoAdapter adapter;
     private static String random_number;
-    private List<String>list =
+
+    private List<String>discuss_list =  new ArrayList<>();
 
     public static DoFragment getInstance(String class_random_number) {
         random_number = class_random_number;
@@ -92,6 +93,7 @@ public class DoFragment extends BaseFragment implements RapidFloatingActionConte
                 doFbtn,
                 rfaContent
         ).build();
+        rfaContent.setOnRapidFloatingActionContentLabelListListener(this);
 
 
     }
@@ -151,6 +153,20 @@ public class DoFragment extends BaseFragment implements RapidFloatingActionConte
                                 }
                             }
                         });
+                        discuss_list = avObject.getList("discuss_arr");
+                        if (discuss_list == null){
+                            discuss_list = new ArrayList<>();
+                        }
+                        doTitleText.setText(avObject.getString("class_name"));
+                        doRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                        adapter = new DoAdapter(getContext(), new OnClickerListener() {
+                            @Override
+                            public void click(int position, View view) {
+                                startActivityTo(GetDiscussActivity.class,discuss_list.get(position));
+                            }
+                        },discuss_list);
+                        doRecyclerView.setAdapter(adapter);
+
 
                     } else {
                         Toast.makeText(getContext(), "房间不存在", Toast.LENGTH_SHORT).show();
@@ -158,14 +174,8 @@ public class DoFragment extends BaseFragment implements RapidFloatingActionConte
                 }
             }
         });
-        doRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new DoAdapter(getContext(), new OnClickerListener() {
-            @Override
-            public void click(int position, View view) {
-                startActivityTo(GetDiscussActivity.class,random_number);
-            }
-        });
-        doRecyclerView.setAdapter(adapter);
+
+
 
     }
 }
