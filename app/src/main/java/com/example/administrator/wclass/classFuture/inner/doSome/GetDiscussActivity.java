@@ -148,7 +148,27 @@ public class GetDiscussActivity extends BaseActivity {
                                                 new String[]{"text1", "text2"}, new int[]{android.R.id.text1, android.R.id.text2});
                                         getDiscussRecycler.setAdapter(adapter);
                                         Toast.makeText(GetDiscussActivity.this, "讨论成功", Toast.LENGTH_SHORT).show();
+/*                                        AVQuery<AVObject>avQuery = new AVQuery<>("ClassBean");
 
+                                        avQuery.getInBackground(avObject.getString("classbean_id"), new GetCallback<AVObject>() {
+                                            @Override
+                                            public void done(AVObject avObject2, AVException e) {
+                                                Map<String,Integer>map1 = (Map<String, Integer>) avObject2.get("class_user_rank");
+                                                int rank = map1.get(AVUser.getCurrentUser().getObjectId());
+
+                                                    rank += new Integer((String) avObject.get("score"));
+                                                    map1.put(AVUser.getCurrentUser().getObjectId(),rank);
+                                                    avObject2.put("class_user_rank",map1);
+                                                    avObject2.saveInBackground(new SaveCallback() {
+                                                        @Override
+                                                        public void done(AVException e) {
+                                                            if (e == null){
+                                                                Log.i(TAG, "done: success update score");
+                                                            }
+                                                        }
+                                                    });
+                                            }
+                                        });*/
                                     } else {
                                         Toast.makeText(GetDiscussActivity.this, "评论失败", Toast.LENGTH_SHORT).show();
                                         Log.e(TAG, "done: " + e.getMessage());

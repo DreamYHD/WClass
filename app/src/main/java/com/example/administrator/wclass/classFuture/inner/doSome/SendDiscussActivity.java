@@ -21,7 +21,9 @@ import com.example.administrator.wclass.base.BaseActivity;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -76,6 +78,7 @@ public class SendDiscussActivity extends BaseActivity {
         discuss.put("owner", AVUser.getCurrentUser().getObjectId().toString());
         discuss.put("type","讨论");
         discuss.put("title",title_edit);
+        discuss.put("class_random_number",random_number);
         discuss.saveInBackground(new SaveCallback() {
             @Override
             public void done(AVException e) {

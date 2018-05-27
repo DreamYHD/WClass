@@ -176,11 +176,9 @@ public class ShowFragment extends BaseFragment {
                                 }
                             }
                         });
-
                     }
                 }
             });
         }
-
     }
 }

@@ -37,7 +37,6 @@
         <activity android:name=".classFuture.inner.doSome.SignedActivity" />
         <activity android:name=".classFuture.inner.doSome.SendDiscussActivity" />
         <activity android:name=".classFuture.inner.doSome.GetDiscussActivity" />
-        <activity android:name=".findFuture.WebActivity" />
         <activity android:name=".classFuture.inner.member.MemberActivity"></activity>
     </application>
 

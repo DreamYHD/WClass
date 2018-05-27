@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import com.avos.avoscloud.AVException;
@@ -13,12 +12,10 @@ import com.avos.avoscloud.SaveCallback;
 import com.example.administrator.wclass.adoutFuture.AboutFragment;
 import com.example.administrator.wclass.base.BaseActivity;
 import com.example.administrator.wclass.classFuture.ClassFragment;
-import com.example.administrator.wclass.findFuture.FindFragment;
 import com.example.administrator.wclass.utils.ActivityUtils;
 import com.example.administrator.wclass.utils.BottomNavigationViewHelper;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity {
     @BindView(R.id.bottom_menu)
@@ -67,10 +64,6 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.bottom_menu_about:
                 ActivityUtils.replaceFragmentToActivity(fragmentManager, AboutFragment.getInstance(),R.id.main_frame);
-                break;
-            case R.id.bottom_menu_find:
-                ActivityUtils.replaceFragmentToActivity(fragmentManager, FindFragment.getInstance(),R.id.main_frame);
-                break;
         }
     }
 
