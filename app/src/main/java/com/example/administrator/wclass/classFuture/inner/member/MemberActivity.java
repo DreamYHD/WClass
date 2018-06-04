@@ -82,10 +82,32 @@ public class MemberActivity extends BaseActivity {
                                             value += 2;
                                             map.put(AVUser.getCurrentUser().getObjectId(),value);
                                             avObject.put("class_user_rank",map);
+                                            final int finalValue = value;
                                             avObject.saveInBackground(new SaveCallback() {
                                                 @Override
                                                 public void done(AVException e) {
                                                     Log.i(TAG, "done: 经验值加上了");
+                                                    AVQuery<AVUser> avUserAVQuery = new AVQuery<>("_User");
+                                                    final int finalRank = finalValue;
+                                                    avUserAVQuery.getInBackground(final_user.getObjectId(), new GetCallback<AVUser>() {
+                                                        @Override
+                                                        public void done(AVUser avUser, AVException e) {
+                                                            if (e == null){
+                                                                int rank = avUser.getInt("all_rank");
+                                                                rank =  rank + 2;
+                                                                Log.i(TAG, "done: "+rank);
+                                                                avUser.put("all_rank",rank);
+                                                                avUser.saveInBackground(new SaveCallback() {
+                                                                    @Override
+                                                                    public void done(AVException e) {
+                                                                        Log.i(TAG, "done: all score update");
+                                                                    }
+                                                                });
+                                                            }else {
+                                                                Log.e(TAG, "done: failde" );
+                                                            }
+                                                        }
+                                                    });
                                                 }
                                             });
                                             activity.finish();

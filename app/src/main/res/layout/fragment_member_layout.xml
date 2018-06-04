@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="Android程序设计"
+                android:text=""
                 android:textColor="#ffff"
                 android:textStyle="bold" />
         </RelativeLayout>

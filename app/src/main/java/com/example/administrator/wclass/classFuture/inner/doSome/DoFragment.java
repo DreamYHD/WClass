@@ -61,13 +61,6 @@ public class DoFragment extends BaseFragment implements RapidFloatingActionConte
         RapidFloatingActionContentLabelList rfaContent = new RapidFloatingActionContentLabelList(getContext());
         List<RFACLabelItem> items = new ArrayList<>();
         items.add(new RFACLabelItem<Integer>()
-                .setLabel("发起答题")
-                .setResId(R.drawable.ic_add_black_24dp)
-                .setIconNormalColor(0xffd84315)
-                .setIconPressedColor(0xffbf360c)
-                .setWrapper(0)
-        );
-        items.add(new RFACLabelItem<Integer>()
                 .setLabel("发起讨论")
                 .setResId(R.drawable.ic_add_black_24dp)
                 .setIconNormalColor(0xffd84315)
@@ -113,14 +106,13 @@ public class DoFragment extends BaseFragment implements RapidFloatingActionConte
     }
 
     private void startActivityByPosition(int position) {
-        if (position == 2){
+        if (position == 1){
            startActivityTo(SignedActivity.class,random_number );
         }
-        if (position == 1){
+        if (position == 0){
             startActivityTo(SendDiscussActivity.class,random_number);
         }
-        if (position == 0){
-        }
+
     }
 
 

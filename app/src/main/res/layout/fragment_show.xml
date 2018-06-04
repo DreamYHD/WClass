@@ -22,7 +22,7 @@
             <TextView
                 android:id="@+id/show_title_text"
                 android:gravity="center"
-                android:text="Android程序设计"
+                android:text=""
                 android:textStyle="bold"
                 android:textColor="#ffff"
                 android:layout_width="match_parent"

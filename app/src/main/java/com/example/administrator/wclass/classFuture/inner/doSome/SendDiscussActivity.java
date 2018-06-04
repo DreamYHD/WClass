@@ -79,43 +79,55 @@ public class SendDiscussActivity extends BaseActivity {
         discuss.put("type","讨论");
         discuss.put("title",title_edit);
         discuss.put("class_random_number",random_number);
-        discuss.saveInBackground(new SaveCallback() {
+        AVQuery<AVObject> query = new AVQuery<>("ClassBean");
+        query.whereEqualTo("class_random_number", random_number);
+        query.getFirstInBackground(new GetCallback<AVObject>() {
             @Override
-            public void done(AVException e) {
+            public void done(final AVObject avObject, AVException e) {
                 if (e == null) {
-                    AVQuery<AVObject> query = new AVQuery<>("ClassBean");
-                    query.whereEqualTo("class_random_number", random_number);
-                    query.getFirstInBackground(new GetCallback<AVObject>() {
+                    discuss.put("classbean_id",avObject.getObjectId());
+                    discuss.saveInBackground(new SaveCallback() {
                         @Override
-                        public void done(final AVObject avObject, AVException e) {
+                        public void done(AVException e) {
                             if (e == null) {
-                                Log.i(TAG, "done: 获取房间信息成功");
-                                if (avObject != null) {
-                                    List<String> discuss_list = avObject.getList("discuss_arr");
-                                    if (discuss_list == null) {
-                                        discuss_list = new ArrayList<>();
-                                    }
-                                    discuss_list.add(discuss.getObjectId());
-                                    avObject.put("discuss_arr", discuss_list);
-                                    avObject.saveInBackground(new SaveCallback() {
-                                        @Override
-                                        public void done(AVException e) {
-                                            if (e == null) {
-                                                Toast.makeText(SendDiscussActivity.this, "讨论发送成功", Toast.LENGTH_SHORT).show();
+                                AVQuery<AVObject> query = new AVQuery<>("ClassBean");
+                                query.whereEqualTo("class_random_number", random_number);
+                                query.getFirstInBackground(new GetCallback<AVObject>() {
+                                    @Override
+                                    public void done(final AVObject avObject, AVException e) {
+                                        if (e == null) {
+                                            Log.i(TAG, "done: 获取房间信息成功");
+                                            if (avObject != null) {
+                                                List<String> discuss_list = avObject.getList("discuss_arr");
+                                                if (discuss_list == null) {
+                                                    discuss_list = new ArrayList<>();
+                                                }
+                                                discuss_list.add(discuss.getObjectId());
+                                                avObject.put("discuss_arr", discuss_list);
+                                                avObject.saveInBackground(new SaveCallback() {
+                                                    @Override
+                                                    public void done(AVException e) {
+                                                        if (e == null) {
+                                                            Toast.makeText(SendDiscussActivity.this, "讨论发送成功", Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    }
+                                                });
+                                            } else {
+                                                Toast.makeText(activity, "房间不存在", Toast.LENGTH_SHORT).show();
                                             }
                                         }
-                                    });
-                                } else {
-                                    Toast.makeText(activity, "房间不存在", Toast.LENGTH_SHORT).show();
-                                }
-                            }
 
+                                    }
+                                });
+
+                            }
                         }
                     });
-
                 }
+
             }
         });
+
 
     }
 

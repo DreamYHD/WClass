@@ -17,6 +17,7 @@ import com.avos.avoscloud.GetCallback;
 import com.avos.avoscloud.SaveCallback;
 import com.example.administrator.wclass.R;
 import com.example.administrator.wclass.base.BaseActivity;
+import com.example.administrator.wclass.data.bean.User;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -148,27 +149,59 @@ public class GetDiscussActivity extends BaseActivity {
                                                 new String[]{"text1", "text2"}, new int[]{android.R.id.text1, android.R.id.text2});
                                         getDiscussRecycler.setAdapter(adapter);
                                         Toast.makeText(GetDiscussActivity.this, "讨论成功", Toast.LENGTH_SHORT).show();
-/*                                        AVQuery<AVObject>avQuery = new AVQuery<>("ClassBean");
+                                        AVQuery<AVObject>avQuery = new AVQuery<>("ClassBean");
 
                                         avQuery.getInBackground(avObject.getString("classbean_id"), new GetCallback<AVObject>() {
                                             @Override
                                             public void done(AVObject avObject2, AVException e) {
-                                                Map<String,Integer>map1 = (Map<String, Integer>) avObject2.get("class_user_rank");
-                                                int rank = map1.get(AVUser.getCurrentUser().getObjectId());
+                                                if (e == null ){
 
-                                                    rank += new Integer((String) avObject.get("score"));
-                                                    map1.put(AVUser.getCurrentUser().getObjectId(),rank);
-                                                    avObject2.put("class_user_rank",map1);
-                                                    avObject2.saveInBackground(new SaveCallback() {
-                                                        @Override
-                                                        public void done(AVException e) {
-                                                            if (e == null){
-                                                                Log.i(TAG, "done: success update score");
+                                                    Map<String,Integer>map1 = (Map<String, Integer>) avObject2.get("class_user_rank");
+                                                    Log.i(TAG, "done: "+map1.size());
+                                                    if (map1.get(AVUser.getCurrentUser().getObjectId()) != null){
+
+                                                        int rank = map1.get(AVUser.getCurrentUser().getObjectId());
+
+                                                        final int rankthis = new Integer((String) avObject.get("score"));
+                                                        rank += rankthis;
+                                                        map1.put(AVUser.getCurrentUser().getObjectId(),rank);
+
+                                                        avObject2.put("class_user_rank",map1);
+                                                        AVQuery<AVUser> avUserAVQuery = new AVQuery<>("_User");
+                                                        avUserAVQuery.getInBackground(final_user.getObjectId(), new GetCallback<AVUser>() {
+                                                            @Override
+                                                            public void done(AVUser avUser, AVException e) {
+                                                                if (e == null){
+
+                                                                    int rank = avUser.getInt("all_rank");
+                                                                    rank =  rank + rankthis;
+                                                                    Log.i(TAG, "done: "+rank);
+                                                                    avUser.put("all_rank",rank);
+                                                                    avUser.saveInBackground(new SaveCallback() {
+                                                                        @Override
+                                                                        public void done(AVException e) {
+                                                                            Log.i(TAG, "done: all score update");
+                                                                        }
+                                                                    });
+                                                                }else {
+                                                                    Log.e(TAG, "done: failde" );
+                                                                }
                                                             }
-                                                        }
-                                                    });
+                                                        });
+                                                        avObject2.saveInBackground(new SaveCallback() {
+                                                            @Override
+                                                            public void done(AVException e) {
+                                                                if (e == null){
+                                                                    Log.i(TAG, "done: success update score");
+                                                                }
+                                                            }
+                                                        });
+                                                    }
+                                                }else {
+                                                    Log.e(TAG, "done: "+e.getMessage() );
+                                                }
                                             }
-                                        });*/
+                                        });
                                     } else {
                                         Toast.makeText(GetDiscussActivity.this, "评论失败", Toast.LENGTH_SHORT).show();
                                         Log.e(TAG, "done: " + e.getMessage());

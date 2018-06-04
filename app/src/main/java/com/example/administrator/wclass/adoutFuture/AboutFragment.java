@@ -38,7 +38,6 @@ import butterknife.Unbinder;
  */
 public class AboutFragment extends BaseFragment {
 
-
     private static final String TAG = "AboutFragment";
     @BindView(R.id.me_image_avatar)
     ImageView meImageAvatar;
@@ -59,12 +58,16 @@ public class AboutFragment extends BaseFragment {
         // Required empty public constructor
         return new AboutFragment();
     }
+    @SuppressLint("SetTextI18n")
     @Override
     public void onStart() {
+        Log.i(TAG, "onStart: success");
+        final_user = AVUser.getCurrentUser();
         if (final_user != null){
+            
             meName.setText(final_user.getUsername().toString());
             meMajor.setText(final_user.getString("school")+" "+final_user.get("major"));
-            meScoreText.setText(final_user.getInt("all_rank")+"");
+
             final int[] cr = {0};
             final int[] jo = {0};
             AVQuery<AVUser> avUserAVQuery = new AVQuery<>("_User");
@@ -72,6 +75,8 @@ public class AboutFragment extends BaseFragment {
                 @Override
                 public void done(AVUser avUser, AVException e) {
                     if (e == null){
+                        meScoreText.setText(avUser.get("all_rank")+"");
+                        Log.i(TAG, "onStart: score =  "+avUser.get("all_rank"));
                         List<String> list_create = avUser.getList("create_wclass");
                         List<String> list_join = avUser.getList("join_wclass");
                         if (list_create != null){
@@ -86,7 +91,6 @@ public class AboutFragment extends BaseFragment {
                     }
                 }
             });
-
         }else {
             setNull();
         }
@@ -98,6 +102,13 @@ public class AboutFragment extends BaseFragment {
     protected void logic() {
 
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.i(TAG, "onResume: onresume");
+    }
+
     private void setNull() {
         meName.setText("请先登录");
         meMajor.setText("");
