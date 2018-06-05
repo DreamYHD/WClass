@@ -60,6 +60,7 @@ public class JoinClassActivity extends BaseActivity {
                                 public void done(final AVUser avUser, AVException e) {
                                     List<String> list = avUser.getList("join_wclass");
                                     if (list == null){
+                                        Log.i(TAG, "done: list is null");
                                         list = new ArrayList<>();
                                     }
                                     if (!list.contains(class_random_number)){
@@ -73,11 +74,12 @@ public class JoinClassActivity extends BaseActivity {
                                                     activity.finish();
                                                     Log.i(TAG, "done: success update join_wclass");
                                                     List<String>user_list = avObject.getList("user_list");
-                                                    Map<String,Integer> user_rank = (Map<String,Integer>) avObject.getList("class_user_rank");
+                                                    Map<String,Integer> user_rank = (Map<String,Integer>) avObject.get("class_user_rank");
                                                     if (user_list == null){
                                                         user_list = new ArrayList<>();
                                                         user_rank = new HashMap<>();
                                                     }
+                                                    Log.i(TAG, "done: "+user_list.size());
                                                     user_list.add(final_user.getObjectId());
                                                     user_rank.put(final_user.getObjectId(),0);
                                                     Log.i(TAG, "done: "+user_list.size());
