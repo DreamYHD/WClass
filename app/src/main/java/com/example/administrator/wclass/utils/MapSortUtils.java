@@ -16,7 +16,7 @@ public class MapSortUtils{
         Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
             @Override
             public int compare(Map.Entry<String, Integer> stringIntegerEntry, Map.Entry<String, Integer> t1) {
-                return stringIntegerEntry.getValue() - t1.getValue();
+                return  t1.getValue() - stringIntegerEntry.getValue() ;
             }
         });
         return list;

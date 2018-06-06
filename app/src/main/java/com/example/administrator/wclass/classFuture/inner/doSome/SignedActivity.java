@@ -111,7 +111,7 @@ public class SignedActivity extends BaseActivity {
                                         if (user_sigin != null) {
                                             final List<String> temp = user_list;
                                             if (user_sigin != null) {
-                                                for (int i = 0; i < user_sigin.size(); i++) {
+                                                for (int i = user_sigin.size() - 1; i >= 0; i--) {
                                                     if (temp.contains(user_sigin.get(i))) {
                                                         temp.remove(user_sigin.get(i));
                                                     }

@@ -28,9 +28,12 @@ import com.example.administrator.wclass.base.BaseFragment;
 import com.example.administrator.wclass.base.OnClickerListener;
 import com.example.administrator.wclass.classFuture.inner.doSome.DoAdapter;
 import com.example.administrator.wclass.classFuture.inner.doSome.GetDiscussActivity;
+import com.example.administrator.wclass.classFuture.inner.member.MemberActivity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -65,6 +68,7 @@ public class ShowFragment extends BaseFragment {
     private static String random_number;
     @BindView(R.id.end_class_btn)
     Button endClassBtn;
+
     public static ShowFragment getInstance(String class_random_number) {
         // Required empty public constructor
         random_number = class_random_number;
@@ -94,7 +98,7 @@ public class ShowFragment extends BaseFragment {
                                 showClassNumberText.setText(avObject.getString("class_class"));
                                 showBankehaoText.setText(avObject.getString("class_random_number"));
                                 showLongtimeText.setText(avObject.getString("class_duration"));
-                                showDescriptionText.setText(avUser.getUsername()+" "+avUser.getString("school")+" "+avUser.getString("major"));
+                                showDescriptionText.setText(avUser.getUsername() + " " + avUser.getString("school") + " " + avUser.getString("major"));
                                 showNameText.setText(avObject.getString("class_name"));
                                 showTitleText.setText(avObject.getString("class_name"));
                                 if (avUser.getUsername().equals(AVUser.getCurrentUser().getUsername())) {
@@ -129,53 +133,129 @@ public class ShowFragment extends BaseFragment {
     public void onViewClicked() {
         getActivity().finish();
     }
+
     @OnClick(R.id.end_class_btn)
     public void onViewClicked2() {
-        if (endClassBtn.getText().equals("结束班课")){
+        if (endClassBtn.getText().equals("结束班课")) {
             // 执行 CQL 语句实现删除一个 Todo 对象
-            AVQuery.doCloudQueryInBackground("delete from ClassBean where class_random_number="+random_number, new CloudQueryCallback<AVCloudQueryResult>() {
-                public void done(AVCloudQueryResult avCloudQueryResult, AVException e) {
-                    if (e == null){
-                        List<String>list = final_user.getList("create_wclass");
-                        if (list == null){
-                            list = new ArrayList<>();
-                        }
-                        if (list.contains(random_number)){
-                            list.remove(random_number);
-                        }
-                        final_user.put("create_wclass",list);
 
-                        final_user.saveInBackground(new SaveCallback() {
+            AVQuery<AVObject> query = new AVQuery<>("ClassBean");
+            query.whereEqualTo("class_random_number", random_number);
+            query.getFirstInBackground(new GetCallback<AVObject>() {
+                @Override
+                public void done(final AVObject avObject, AVException e) {
+                    if (e == null) {
+                        if (avObject != null) {
+                            AVQuery.doCloudQueryInBackground("delete from ClassBean where objectId='" + avObject.getObjectId() + "'", new CloudQueryCallback<AVCloudQueryResult>() {
+                                public void done(AVCloudQueryResult avCloudQueryResult, AVException e) {
+                                    if (e == null) {
+                                        AVQuery<AVUser> avUserAVQuery = new AVQuery<>("_User");
+                                        avUserAVQuery.getInBackground(AVUser.getCurrentUser().getObjectId(), new GetCallback<AVUser>() {
+                                            @Override
+                                            public void done(AVUser avUser, AVException e) {
+                                                List<String> list = avUser.getList("create_wclass");
+                                                if (list == null) {
+                                                    list = new ArrayList<>();
+                                                }
+                                                if (list.contains(random_number)) {
+                                                    list.remove(random_number);
+                                                }
+                                                avUser.put("create_wclass", list);
+
+                                                avUser.saveInBackground(new SaveCallback() {
+                                                    @Override
+                                                    public void done(AVException e) {
+                                                        if (e == null) {
+
+                                                        }
+                                                    }
+                                                });
+                                            }
+                                        });
+                                        AVQuery<AVUser> avUserAVQuery2 = new AVQuery<>("_User");
+                                        avUserAVQuery2.findInBackground(new FindCallback<AVUser>() {
+                                            @Override
+                                            public void done(List<AVUser> list, AVException e) {
+                                                for (AVUser user : list) {
+                                                    List<String> list2 = user.getList("join_wclass");
+                                                    if (list2 == null) {
+                                                        list2 = new ArrayList<>();
+                                                    }
+                                                    if (list2.contains(random_number)) {
+                                                        list2.remove(random_number);
+                                                    }
+                                                    user.put("join_wclass", list2);
+                                                    user.saveInBackground(new SaveCallback() {
+                                                        @Override
+                                                        public void done(AVException e) {
+                                                            Toast.makeText(getActivity(), "结束成功", Toast.LENGTH_SHORT).show();
+                                                            getActivity().finish();
+                                                        }
+                                                    });
+                                                }
+                                            }
+                                        });
+                                    } else {
+                                        Log.e(TAG, "done: " + e.getMessage());
+                                    }
+                                }
+                            });
+                        } else {
+                        }
+                    }
+                }
+            });
+
+        } else {
+            AVQuery<AVObject> query = new AVQuery<>("ClassBean");
+            query.whereEqualTo("class_random_number", random_number);
+            query.getFirstInBackground(new GetCallback<AVObject>() {
+                @Override
+                public void done(final AVObject avObject, AVException e) {
+                    if (e == null) {
+                        List<String> list_user = (List<String>) avObject.get("user_list");
+                        if (list_user != null) {
+                            if (list_user.contains(AVUser.getCurrentUser().getObjectId())) {
+                                list_user.remove(AVUser.getCurrentUser().getObjectId());
+                            }
+                        }
+                        Map<String, Integer> map = avObject.getMap("class_user_rank");
+                        if (map != null) {
+                            if (map.containsKey(AVUser.getCurrentUser().getObjectId())) {
+                                map.remove(AVUser.getCurrentUser().getObjectId());
+                            }
+                        }
+                        avObject.put("user_list", list_user);
+                        avObject.put("class_user_rank", map);
+                        avObject.saveInBackground(new SaveCallback() {
                             @Override
                             public void done(AVException e) {
-                                if (e == null){
+                                final AVQuery<AVUser> avQuery_user = new AVQuery<>("_User");
+                                avQuery_user.getInBackground(final_user.getObjectId(), new GetCallback<AVUser>() {
+                                    @Override
+                                    public void done(final AVUser avUser, AVException e) {
 
-                                }
-                            }
-                        });
-                        AVQuery<AVUser>avUserAVQuery = new AVQuery<>("_User");
-                        avUserAVQuery.findInBackground(new FindCallback<AVUser>() {
-                            @Override
-                            public void done(List<AVUser> list, AVException e) {
-                                for (AVUser user :list){
-                                    List<String>list2 = user.getList("join_wclass");
-                                    if (list2 == null){
-                                        list2 = new ArrayList<>();
-                                    }
-                                    if (list2.contains(random_number)){
-                                        list2.remove(random_number);
-                                    }
-                                    user.put("join_wclass",list2);
-                                    user.saveInBackground(new SaveCallback() {
-                                        @Override
-                                        public void done(AVException e) {
-                                            Toast.makeText(getActivity(), "结束成功", Toast.LENGTH_SHORT).show();
-                                            getActivity().finish();
+                                        List<String> list = avUser.getList("join_wclass");
+                                        if (list == null){
+                                            Log.i(TAG, "done: list is null");
+                                            list = new ArrayList<>();
                                         }
-                                    });
-                                }
+                                        if (list.contains(random_number)) {
+                                            list.remove(random_number);
+                                        }
+                                        avUser.put("join_wclass", list);
+                                        avUser.saveInBackground(new SaveCallback() {
+                                            @Override
+                                            public void done(AVException e) {
+                                                Toast.makeText(getActivity(), "结束成功", Toast.LENGTH_SHORT).show();
+                                                getActivity().finish();
+                                            }
+                                        });
+                                    }
+                                });
                             }
                         });
+
                     }
                 }
             });

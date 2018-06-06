@@ -52,7 +52,6 @@ public class MainActivity extends BaseActivity {
             }
         });
     }
-
     /**
      * 根据id显示相应的页面
      * @param menu_id

@@ -44,7 +44,7 @@
         <TextView
             android:textSize="15sp"
             android:textColor="#272727"
-            android:text="14070941,14070942"
+            android:text=""
             android:layout_marginLeft="15dp"
             android:layout_marginTop="15dp"
             android:layout_toRightOf="@id/show_image"
@@ -55,7 +55,7 @@
             android:textColor="#272727"
             android:textSize="15sp"
             android:layout_marginTop="5dp"
-            android:text="Android 程序设计"
+            android:text=""
             android:layout_toRightOf="@+id/show_image"
             android:layout_marginLeft="15dp"
             android:layout_below="@+id/show_class_number_text"
@@ -63,7 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
-            android:text="王倩 中北大学 计算机与控制工程学院"
+            android:text=""
             android:layout_marginTop="5dp"
             android:layout_marginLeft="15dp"
             android:layout_toRightOf="@+id/show_image"
@@ -90,7 +90,7 @@
             android:layout_width="match_parent"
             android:layout_height="30dp" />
         <TextView
-            android:text="478214"
+            android:text=""
             android:gravity="center_vertical"
             android:textColor="#b95757"
             android:id="@+id/show_bankehao_text"
@@ -117,7 +117,7 @@
             android:layout_width="match_parent"
             android:layout_height="30dp" />
         <TextView
-            android:text="12学时"
+            android:text=""
             android:gravity="center_vertical"
             android:textColor="#b95757"
             android:id="@+id/show_longtime_text"

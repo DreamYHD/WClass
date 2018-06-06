@@ -58,6 +58,7 @@ public class JoinClassActivity extends BaseActivity {
                             avQuery_user.getInBackground(final_user.getObjectId(), new GetCallback<AVUser>() {
                                 @Override
                                 public void done(final AVUser avUser, AVException e) {
+
                                     List<String> list = avUser.getList("join_wclass");
                                     if (list == null){
                                         Log.i(TAG, "done: list is null");
