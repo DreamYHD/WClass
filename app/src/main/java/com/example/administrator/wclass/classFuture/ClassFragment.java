@@ -165,8 +165,6 @@ public class ClassFragment extends BaseFragment implements RapidFloatingActionCo
                                     }
                                 });
                             }
-
-                           
                         }
                         linearLayoutManager = new LinearLayoutManager(getActivity());
                         classFragmentRecycler.setLayoutManager(linearLayoutManager);

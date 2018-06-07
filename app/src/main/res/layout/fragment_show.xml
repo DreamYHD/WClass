@@ -160,7 +160,7 @@
         android:textStyle="bold"
         android:textColor="#ffff"
         android:background="#dd5555"
-        android:text="结束班课"
+        android:text=""
         android:layout_width="match_parent"
         android:layout_height="40dp" />
 

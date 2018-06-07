@@ -7,5 +7,9 @@
         <item name="colorPrimaryDark">#37474f</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    <style name="AppTheme.Splash">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@drawable/splash</item>
+    </style>
 
 </resources>
