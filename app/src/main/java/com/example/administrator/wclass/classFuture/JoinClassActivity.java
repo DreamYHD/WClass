@@ -64,45 +64,50 @@ public class JoinClassActivity extends BaseActivity {
                                         Log.i(TAG, "done: list is null");
                                         list = new ArrayList<>();
                                     }
-                                    if (!list.contains(class_random_number)){
-                                        list.add(class_random_number);
-                                        avUser.put("join_wclass",list);
-                                        avUser.saveInBackground(new SaveCallback() {
-                                            @Override
-                                            public void done(AVException e) {
-                                                if (e == null){
-                                                    Toast.makeText(activity, "加入成功,快去学习吧", Toast.LENGTH_SHORT).show();
-                                                    activity.finish();
-                                                    Log.i(TAG, "done: success update join_wclass");
-                                                    List<String>user_list = avObject.getList("user_list");
-                                                    Map<String,Integer> user_rank = (Map<String,Integer>) avObject.get("class_user_rank");
-                                                    if (user_list == null){
-                                                        user_list = new ArrayList<>();
-                                                        user_rank = new HashMap<>();
-                                                    }
-                                                    Log.i(TAG, "done: "+user_list.size());
-                                                    user_list.add(final_user.getObjectId());
-                                                    user_rank.put(final_user.getObjectId(),0);
-                                                    Log.i(TAG, "done: "+user_list.size());
-                                                    avObject.put("user_list",user_list);
-                                                    avObject.put("class_user_rank",user_rank);
-                                                    avObject.saveInBackground(new SaveCallback() {
-                                                        @Override
-                                                        public void done(AVException e) {
-                                                            if ( e == null){
-                                                                Log.i(TAG, "done: success add to classbean");
-                                                            }else {
-                                                                Log.e(TAG, "done: "+e.getMessage() );
-                                                            }
+                                    if (avObject.getBoolean("canjoin")){
+                                        if (!list.contains(class_random_number)){
+                                            list.add(class_random_number);
+                                            avUser.put("join_wclass",list);
+                                            avUser.saveInBackground(new SaveCallback() {
+                                                @Override
+                                                public void done(AVException e) {
+                                                    if (e == null){
+                                                        Toast.makeText(activity, "加入成功,快去学习吧", Toast.LENGTH_SHORT).show();
+                                                        activity.finish();
+                                                        Log.i(TAG, "done: success update join_wclass");
+                                                        List<String>user_list = avObject.getList("user_list");
+                                                        Map<String,Integer> user_rank = (Map<String,Integer>) avObject.get("class_user_rank");
+                                                        if (user_list == null){
+                                                            user_list = new ArrayList<>();
+                                                            user_rank = new HashMap<>();
                                                         }
+                                                        Log.i(TAG, "done: "+user_list.size());
+                                                        user_list.add(final_user.getObjectId());
+                                                        user_rank.put(final_user.getObjectId(),0);
+                                                        Log.i(TAG, "done: "+user_list.size());
+                                                        avObject.put("user_list",user_list);
+                                                        avObject.put("class_user_rank",user_rank);
+                                                        avObject.saveInBackground(new SaveCallback() {
+                                                            @Override
+                                                            public void done(AVException e) {
+                                                                if ( e == null){
+                                                                    Log.i(TAG, "done: success add to classbean");
+                                                                }else {
+                                                                    Log.e(TAG, "done: "+e.getMessage() );
+                                                                }
+                                                            }
 
-                                                    });
+                                                        });
+                                                    }
                                                 }
-                                            }
-                                        });
+                                            });
+
+                                        }else {
+                                            Toast.makeText(activity, "你已经加入了该课堂", Toast.LENGTH_SHORT).show();
+                                        }
 
                                     }else {
-                                        Toast.makeText(activity, "你已经加入了该课堂", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(JoinClassActivity.this, "班课现在不允许加入", Toast.LENGTH_SHORT).show();
                                     }
 
                                 }

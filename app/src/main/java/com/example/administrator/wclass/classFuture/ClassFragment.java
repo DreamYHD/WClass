@@ -14,12 +14,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.GetCallback;
+import com.avos.avoscloud.SaveCallback;
 import com.example.administrator.wclass.R;
 import com.example.administrator.wclass.base.BaseFragment;
 import com.example.administrator.wclass.base.OnClickerListener;
@@ -108,11 +110,63 @@ public class ClassFragment extends BaseFragment implements RapidFloatingActionCo
                         list_create = avUser.getList("create_wclass");
                         list_join = avUser.getList("join_wclass");
                         if (list_create != null){
+                            
                             list_all.addAll(list_create);
                             Log.i(TAG, "done: "+list_create.size());
                         }
                         if (list_join != null){
-                            list_all.addAll(list_join);
+                            for (int i = list_join.size() - 1; i >= 0; i--) {
+                                AVQuery<AVObject> query = new AVQuery<>("ClassBean");
+                                query.whereEqualTo("class_random_number",list_join.get(i));
+                                final int finalI = i;
+                                query.getFirstInBackground(new GetCallback<AVObject>() {
+                                    @Override
+                                    public void done(final AVObject avObject, AVException e) {
+                                        if (e == null){
+                                            if (avObject != null){
+                                                if (avObject.getBoolean("isend") == true){//已经结束的
+                                                    list_join.remove(finalI);
+                                                    Log.i(TAG, "done: this class has end ");
+                                                }else {
+                                                }
+                                            }else {
+                                            }
+                                        }
+                                    }
+                                });
+                                avUser.put("join_wclass",list_join);
+                                avUser.saveInBackground(new SaveCallback() {
+                                    @Override
+                                    public void done(AVException e) {
+                                        if (e == null){
+                                            Log.i(TAG, "done: 把结束的课程去除"+list_join.size());
+                                            list_all.addAll(list_join);
+                                            linearLayoutManager = new LinearLayoutManager(getActivity());
+                                            classFragmentRecycler.setLayoutManager(linearLayoutManager);
+                                            classFragmentAdapter = new ClassFragmentAdapter(getContext(),
+                                                    new OnClickerListener() {
+                                                        @Override
+                                                        public void click(int position, View view) {
+                                                            Intent intent = new Intent(getContext(),ClassActivity.class);
+                                                            Bundle bundle = new Bundle();
+                                                            bundle.putString("class_random_number",list_all.get(position));
+                                                            intent.putExtras(bundle);
+                                                            startActivity(intent);
+                                                        }
+                                                    },list_all);
+                                            Log.i(TAG, "updateData: "+list_all.size());
+                                            classFragmentRecycler.setAdapter(classFragmentAdapter);
+                                            classFragmentAdapter.notifyDataSetChanged();
+                                        }else {
+                                            Log.e(TAG, "done: "+e.getMessage() );
+                                        }
+
+
+                                    }
+                                });
+                            }
+
+                           
                         }
                         linearLayoutManager = new LinearLayoutManager(getActivity());
                         classFragmentRecycler.setLayoutManager(linearLayoutManager);
@@ -130,6 +184,7 @@ public class ClassFragment extends BaseFragment implements RapidFloatingActionCo
                         Log.i(TAG, "updateData: "+list_all.size());
                         classFragmentRecycler.setAdapter(classFragmentAdapter);
                         classFragmentAdapter.notifyDataSetChanged();
+
                     }
                 }
             });

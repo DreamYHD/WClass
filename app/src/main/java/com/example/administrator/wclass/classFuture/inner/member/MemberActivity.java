@@ -25,7 +25,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MemberActivity extends BaseActivity {
+public class  MemberActivity extends BaseActivity {
 
 
     private static final String TAG = "MemberActivity";
