@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentManager;//
 import android.support.v7.app.AppCompatActivity;
 
 import com.avos.avoscloud.AVUser;
